@@ -133,10 +133,10 @@ class LEDStripControlPlugin(octoprint.plugin.AssetPlugin,
 				# Marlin uses RUB instead of RGB
 				if k == 'u': k = 'g'
 				try:
-					v = float(match.group(2))
+					v = 255.0 - float(match.group(2))
 				except ValueError:
 					# more than likely match.group(2) was unspecified
-					v = 255.0
+					v = 0.0
 				v = v/255.0 * 100.0 # convert RGB to RPi dutycycle
 				v = max(min(v, 100.0), 0.0) # clamp the value
 				dutycycles[k] = v
